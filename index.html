@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Efeito Túnel e Processadores</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span>Nanocomputação</span>
+      </div>
+
+      <div class="tab-buttons" aria-label="Abas da apresentação">
+        <button class="tab-button active" data-tab="interactive">Interativa</button>
+        <button class="tab-button" data-tab="institutional">Institucional</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="interactive" class="tab-panel active">
+        <div class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Material didático interativo</p>
+            <h1>Do efeito túnel aos chips que aquecem o mundo</h1>
+            <p class="lead">
+              A mesma física quântica que permite que uma partícula atravesse uma
+              barreira invisível explica por que os processadores modernos perdem
+              energia e geram calor mesmo quando não estão trabalhando no máximo.
+            </p>
+            <div class="facts-grid">
+              <div class="fact-card">
+                <strong>~10<sup>-9</sup> m</strong>
+                <span>escala nanométrica dos transistores</span>
+              </div>
+              <div class="fact-card">
+                <strong>quântica</strong>
+                <span>função de onda não desaparece na barreira</span>
+              </div>
+              <div class="fact-card">
+                <strong>calor</strong>
+                <span>corrente de fuga dissipa energia</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="orbit orbit-a"></div>
+            <div class="orbit orbit-b"></div>
+            <div class="core"></div>
+            <div class="pulse pulse-1"></div>
+            <div class="pulse pulse-2"></div>
+            <div class="pulse pulse-3"></div>
+          </div>
+        </div>
+
+        <section id="tunnel" class="panel">
+          <div class="section-heading">
+            <p class="eyebrow">1. Física quântica</p>
+            <h2>Efeito túnel</h2>
+          </div>
+
+          <div class="simulator">
+            <div class="sim-controls">
+              <label>
+                Largura da barreira
+                <input id="barrierSlider" type="range" min="0.6" max="4" step="0.1" value="2.2" />
+              </label>
+              <label>
+                Energia da partícula
+                <input id="energySlider" type="range" min="0.2" max="1" step="0.05" value="0.65" />
+              </label>
+              <div class="toggle-block">
+                <button id="toggleWave">Pausar tunelamento</button>
+              </div>
+            </div>
+
+            <div class="canvas-wrap">
+              <canvas id="tunnelCanvas" width="900" height="320"></canvas>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat-box">
+                <span>Probabilidade de transmissão</span>
+                <strong id="transmissionValue">~8.5%</strong>
+              </div>
+              <div class="stat-box">
+                <span>Parâmetro de decaimento</span>
+                <strong id="decayValue">κ ≈ 1.9</strong>
+              </div>
+              <div class="stat-box">
+                <span>Interpretação</span>
+                <strong id="interpretationValue">Túnel parcial</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="transistors" class="panel">
+          <div class="section-heading">
+            <p class="eyebrow">2. Engenharia</p>
+            <h2>Miniaturização e corrente de fuga</h2>
+          </div>
+
+          <div class="transistor-layout">
+            <div class="transistor-panel">
+              <div class="chip">
+                <div class="chip-core">
+                  <span class="chip-label">MOSFET</span>
+                  <div class="gate-block"></div>
+                  <div class="source"></div>
+                  <div class="drain"></div>
+                  <div class="channel"></div>
+                  <div class="oxide"></div>
+                </div>
+              </div>
+
+              <div class="device-controls">
+                <label>
+                  Tamanho do transistor
+                  <input id="transistorSlider" type="range" min="2" max="14" step="0.5" value="7" />
+                </label>
+              </div>
+
+              <div class="device-hint">
+                Menor transistor = maior fuga de corrente e mais calor gerado.
+              </div>
+            </div>
+
+            <div class="heat-panel">
+              <div class="heat-header">
+                <h3>Fluxo de energia</h3>
+                <span id="nodeSizeLabel">7 nm</span>
+              </div>
+
+              <div class="meter">
+                <div class="meter-bar">
+                  <div id="heatBar" class="meter-fill"></div>
+                </div>
+                <div class="meter-values">
+                  <span>baixo</span>
+                  <span>médio</span>
+                  <span>alto</span>
+                </div>
+              </div>
+
+              <div class="metric-list">
+                <div>
+                  <span>Corrente de fuga</span>
+                  <strong id="leakageValue">Moderada</strong>
+                </div>
+                <div>
+                  <span>Potência dissipada</span>
+                  <strong id="powerValue">~54 W</strong>
+                </div>
+                <div>
+                  <span>Geração de calor</span>
+                  <strong id="heatValue">Alta</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="datacenter" class="panel">
+          <div class="section-heading">
+            <p class="eyebrow">3. Impacto real</p>
+            <h2>Do chip ao data center</h2>
+          </div>
+
+          <div class="datacenter-layout">
+            <div class="server-bank">
+              <div class="server server-1"></div>
+              <div class="server server-2"></div>
+              <div class="server server-3"></div>
+              <div class="server server-4"></div>
+            </div>
+
+            <div class="water-system">
+              <div class="cooling-label cooling-label-hot">Calor</div>
+              <div class="cooling-label cooling-label-cold">Resfriamento</div>
+              <div class="tower"></div>
+              <div class="pipe pipe-a"></div>
+              <div class="pipe pipe-b"></div>
+              <div class="droplets">
+                <span class="drop drop-1"></span>
+                <span class="drop drop-2"></span>
+                <span class="drop drop-3"></span>
+                <span class="drop drop-4"></span>
+                <span class="drop drop-5"></span>
+              </div>
+            </div>
+
+            <div class="impact-card">
+              <h3>Conclusão visual</h3>
+              <p>
+                Pequenas reduções nas dimensões dos transistores aumentam a corrente de
+                fuga. Em agregação (milhões a bilhões de dispositivos), essa energia
+                dissipada converte-se em calor real: precisa de refrigeração, energia
+                adicional e, em muitos projetos, consumo de água.
+              </p>
+
+              <div class="datacenter-metrics">
+                <div>
+                  <span>Consumo hídrico estimado</span>
+                  <strong id="waterValue">9,3 trilhões de L/ano</strong>
+                </div>
+                <div>
+                  <span>Demanda elétrica (aprox.)</span>
+                  <strong id="energyValue">-- MW</strong>
+                </div>
+                <div>
+                  <span>PUE estimado</span>
+                  <strong id="pueValue">--</strong>
+                </div>
+                <div>
+                  <span>Emissões (estim.)</span>
+                  <strong id="co2Value">-- kt CO₂/ano</strong>
+                </div>
+              </div>
+
+              
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section id="institutional" class="tab-panel">
+        <article class="institutional-article">
+          <div class="institutional-header">
+            <p class="eyebrow">Visão Institucional</p>
+            <h2>Física quântica, engenharia de semicondutores e sustentabilidade</h2>
+          </div>
+
+          <div class="institutional-grid">
+            <div class="institutional-card">
+              <h3>Fundamentação física</h3>
+              <p>
+                A interpretação de Born estabelece que a função de onda Ψ(x,t) descreve a
+                densidade de probabilidade de encontrar uma partícula. Para uma barreira finita
+                de potencial V₀, a solução interna é não-oscillatória:
+              </p>
+              <div class="equation">ψ(x) = C e<sup>κx</sup> + D e<sup>-κx</sup></div>
+              <div class="equation">κ = √(2m(V₀ − E)) / ħ</div>
+              <p>
+                Quando a barreira tem largura finita a, a onda não desaparece abruptamente. Em vez
+                disso, ela decai exponencialmente e mantém uma amplitude residual após a barreira,
+                o que gera uma probabilidade não nula de transmissão.
+              </p>
+            </div>
+
+            <div class="institutional-card">
+              <h3>Transmissão e tunelamento</h3>
+              <div class="equation">T ∝ e<sup>-2κa</sup></div>
+              <p>
+                A expressão acima mostra que a probabilidade de transmissão decai exponencialmente
+                com a largura da barreira. Isso significa que pequenas reduções em a, da ordem de
+                frações de nanômetro, produzem alterações muito grandes na corrente que atravessa o
+                dielétrico do transistor.
+              </p>
+              <p>
+                Em dispositivos modernos, esse fenômeno é relevante não apenas em fenômenos de física,
+                mas também em engenharia de semicondutores e em medidas de confiabilidade de chips.
+              </p>
+            </div>
+          </div>
+
+          <div class="stack-row">
+            <div class="institutional-card accent">
+              <h3>Da física à tecnologia</h3>
+              <p>
+                A Lei de Moore incentivou a redução contínua das dimensões dos transistores. Com
+                portas cada vez menores, o óxido de silício tradicional tornou-se insuficiente para
+                controlar o tunelamento e a fuga de corrente.
+              </p>
+              <p>
+                A corrente de fuga não realiza cálculo útil; ela apenas atravessa a barreira e se
+                dissipa como calor. Em um chip com bilhões de dispositivos, esse efeito vira uma fonte
+                importante de potência estática e aquecimento.
+              </p>
+            </div>
+
+            <div class="institutional-card">
+              <h3>Resfriamento e água</h3>
+              <p>
+                A dissipação térmica em data centers exige sistemas de refrigeração mais eficientes do
+                que o ar isolado. Por isso, são usados circuitos de água resfriada, serpentinas e torres
+                de resfriamento evaporativo. O calor gerado pelos servidores é transferido para a água,
+                que evapora e remove energia térmica do sistema.
+              </p>
+              <p>
+                Esse processo torna o problema ambiental evidente: mais processamento, mais calor,
+                mais necessidade de resfriamento e, em muitos casos, maior uso de água potável.
+              </p>
+            </div>
+          </div>
+
+          <div class="institutional-card full-width">
+            <h3>Cenário brasileiro e desafios socioambientais</h3>
+            <div class="country-grid">
+              <div>
+                <strong>1.</strong>
+                <p>O crescimento de data centers no Brasil é impulsionado por IA, nuvem e infraestrutura digital.</p>
+              </div>
+              <div>
+                <strong>2.</strong>
+                <p>O aumento de demanda elétrica e térmica eleva a pressão sobre redes de refrigeração e abastecimento.</p>
+              </div>
+              <div>
+                <strong>3.</strong>
+                <p>Regiões com crescimento econômico acelerado podem enfrentar conflitos entre uso industrial e consumo urbano.</p>
+              </div>
+            </div>
+            <p>
+              O alerta da comunidade acadêmica é claro: a expansão tecnológica não pode ignorar a gestão
+              responsável de água, energia e território. Em um cenário de expansão de IA e computação de alto
+              desempenho, a discussão deixa de ser apenas técnica e passa a ser também climática, social e política.
+            </p>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p>Baseado no material: “O Efeito Túnel e o Aquecimento dos Processadores”</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
