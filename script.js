@@ -140,9 +140,9 @@ function updateTransistorUI() {
   if (nodeSizeLabel) nodeSizeLabel.textContent = `${size.toFixed(1)} nm`;
 
   const leakageFactor = clamp((14 - size) / 13, 0.05, 0.95);
-  const power = (20 + leakageFactor * 90).toFixed(0);
+  const power = (25 + leakageFactor * 140).toFixed(0);
 
-  const heat = clamp((size / 14) * 100, 12, 100);
+  const heat = clamp(25 + leakageFactor * 75, 25, 100);
   if (heatBar) heatBar.style.width = `${heat}%`;
 
   const chipCore = document.querySelector('.chip-core');
@@ -155,13 +155,13 @@ function updateTransistorUI() {
 
   if (leakageValue) {
     if (size > 10) leakageValue.textContent = 'Baixa';
-    else if (size > 6) leakageValue.textContent = 'Moderada';
-    else leakageValue.textContent = 'Alta';
+    else if (size > 6) leakageValue.textContent = 'Relevante';
+    else leakageValue.textContent = 'Elevada';
   }
   if (heatValue) {
     if (size > 10) heatValue.textContent = 'Moderada';
-    else if (size > 6) heatValue.textContent = 'Alta';
-    else heatValue.textContent = 'Crítica';
+    else if (size > 6) heatValue.textContent = 'Elevada';
+    else heatValue.textContent = 'Muito elevada';
   }
 
   if (powerValue) powerValue.textContent = `~${power} W`;
